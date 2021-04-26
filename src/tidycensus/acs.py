@@ -12,11 +12,11 @@ from .loaders import format_variables_acs, load_data_acs
 from .utils import verify_list_inputs
 
 
-@retries(
-    max_attempts=3,
-    wait=lambda n: 2 ** n,
-    pre_retry_hook=lambda: logger.info("Call failed. Retrying..."),
-)
+# @retries(
+#     max_attempts=3,
+#     wait=lambda n: 2 ** n,
+#     pre_retry_hook=lambda: logger.info("Call failed. Retrying..."),
+# )
 def get_acs(
     geography,
     variables=None,
@@ -26,7 +26,8 @@ def get_acs(
     state=None,
     county=None,
     zcta=None,
-    geoid=None,
+    place=None,
+    cbsa=None,
     key=None,
     moe_level=90,
     survey="acs5",
@@ -46,8 +47,8 @@ def get_acs(
         variables = [variables[k] for k in renamed_variables]
 
     # Handle default parameters
-    variables, state, county, zcta, geoid = map(
-        verify_list_inputs, [variables, state, county, zcta, geoid]
+    variables, state, county, zcta, place, cbsa = map(
+        verify_list_inputs, [variables, state, county, zcta, place, cbsa]
     )
 
     # Check year values for specific surveys
@@ -168,7 +169,8 @@ def get_acs(
                         state=state,
                         county=county,
                         zcta=zcta,
-                        geoid=geoid,
+                        place=place,
+                        cbsa=cbsa,
                         key=key,
                         moe_level=moe_level,
                         survey=survey,
@@ -198,7 +200,8 @@ def get_acs(
                     state=s,
                     county=county,
                     zcta=zcta,
-                    geoid=geoid,
+                    place=place,
+                    cbsa=cbsa,
                     key=key,
                     moe_level=moe_level,
                     survey=survey,
@@ -224,7 +227,8 @@ def get_acs(
                     state=state,
                     county=c,
                     zcta=zcta,
-                    geoid=geoid,
+                    place=place,
+                    cbsa=cbsa,
                     key=key,
                     moe_level=moe_level,
                     survey=survey,
@@ -279,7 +283,8 @@ def get_acs(
                 state=state,
                 couny=county,
                 zcta=zcta,
-                geoid=geoid,
+                place=place,
+                cbsa=cbsa,
                 show_call=show_call,
             ),
         )
@@ -301,7 +306,8 @@ def get_acs(
             state=state,
             county=county,
             zcta=zcta,
-            geoid=geoid,
+            place=place,
+            cbsa=cbsa,
             show_call=show_call,
         )
 

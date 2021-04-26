@@ -490,7 +490,8 @@ def load_data_acs(
     state=None,
     county=None,
     zcta=None,
-    geoid=None,
+    place=None,
+    cbsa=None,
     show_call=False,
 ):
 
@@ -510,11 +511,9 @@ def load_data_acs(
 
     for_area = geography + ":*"
 
-    # We have geoid
-    if len(geoid):
-        geoid = ",".join(geoid)
-        for_area = f"{geography}:{geoid}"
-
+    # We have cbsa
+    if len(cbsa):
+        for_area = f"{geography}:{cbsa}"
         vars_to_get = formatted_variables + ",NAME"
         call = get(base, params={"get": vars_to_get, "for": for_area, "key": key})
 
@@ -538,6 +537,15 @@ def load_data_acs(
                 in_area = f"state:{state}"
             else:
                 in_area = f"state:{state}+county:{county}"
+        elif len(place):
+
+            place = ",".join(place)
+
+            if geography == "place":
+                for_area = f"place:{place}"
+                in_area = f"place:{place}"
+            else:
+                in_area = f"state:{state}+place:{place}"
         else:
             if year > 2013 and geography == "block group" and len(county):
                 in_area = f"state:{state}&in=county:*"
