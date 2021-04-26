@@ -13,7 +13,7 @@ from .utils import verify_list_inputs
 
 
 @retries(
-    max_attempts=5,
+    max_attempts=3,
     wait=lambda n: 2 ** n,
     pre_retry_hook=lambda: logger.info("Call failed. Retrying..."),
 )
@@ -26,6 +26,7 @@ def get_acs(
     state=None,
     county=None,
     zcta=None,
+    geoid=None,
     key=None,
     moe_level=90,
     survey="acs5",
@@ -45,8 +46,8 @@ def get_acs(
         variables = [variables[k] for k in renamed_variables]
 
     # Handle default parameters
-    variables, state, county, zcta = map(
-        verify_list_inputs, [variables, state, county, zcta]
+    variables, state, county, zcta, geoid = map(
+        verify_list_inputs, [variables, state, county, zcta, geoid]
     )
 
     # Check year values for specific surveys
@@ -167,6 +168,7 @@ def get_acs(
                         state=state,
                         county=county,
                         zcta=zcta,
+                        geoid=geoid,
                         key=key,
                         moe_level=moe_level,
                         survey=survey,
@@ -196,6 +198,7 @@ def get_acs(
                     state=s,
                     county=county,
                     zcta=zcta,
+                    geoid=geoid,
                     key=key,
                     moe_level=moe_level,
                     survey=survey,
@@ -221,6 +224,7 @@ def get_acs(
                     state=state,
                     county=c,
                     zcta=zcta,
+                    geoid=geoid,
                     key=key,
                     moe_level=moe_level,
                     survey=survey,
@@ -275,6 +279,7 @@ def get_acs(
                 state=state,
                 couny=county,
                 zcta=zcta,
+                geoid=geoid,
                 show_call=show_call,
             ),
         )
@@ -296,6 +301,7 @@ def get_acs(
             state=state,
             county=county,
             zcta=zcta,
+            geoid=geoid,
             show_call=show_call,
         )
 

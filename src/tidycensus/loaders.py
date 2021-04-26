@@ -490,11 +490,12 @@ def load_data_acs(
     state=None,
     county=None,
     zcta=None,
+    geoid=None,
     show_call=False,
 ):
 
     # Check inputs
-    state, county, zcta = map(verify_list_inputs, [state, county, zcta])
+    state, county, zcta, geoid = map(verify_list_inputs, [state, county, zcta, geoid])
 
     # Base URL
     base = f"https://api.census.gov/data/{year}/acs/{survey}"
@@ -509,8 +510,16 @@ def load_data_acs(
 
     for_area = geography + ":*"
 
+    # We have geoid
+    if len(geoid):
+        geoid = ",".join(geoid)
+        for_area = f"{geography}:{geoid}"
+
+        vars_to_get = formatted_variables + ",NAME"
+        call = get(base, params={"get": vars_to_get, "for": for_area, "key": key})
+
     # We have a state
-    if len(state):
+    elif len(state):
 
         state = [validate_state(s) for s in state]
         state = ",".join(state)
