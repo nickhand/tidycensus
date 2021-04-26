@@ -521,7 +521,7 @@ def load_data_acs(
         # We have a county too
         if len(county):
 
-            county < -[validate_county(c) for c in county]
+            county = [validate_county(state, c) for c in county]
             county = ",".join(county)
 
             if geography == "county":

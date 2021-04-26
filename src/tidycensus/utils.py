@@ -90,7 +90,9 @@ def validate_county(state, county):
 
     if match("^\d+$", county):  # probably a FIPS code
 
-        county = f"{county:03d}"  # in case they passed in 1 or 2 digit county codes
+        county = (
+            f"{int(county):03d}"  # in case they passed in 1 or 2 digit county codes
+        )
 
         if county in COUNTY_TABLE["county_code"].values:
             return county
