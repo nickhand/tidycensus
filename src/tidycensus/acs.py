@@ -281,7 +281,7 @@ def get_acs(
                 year,
                 survey,
                 state=state,
-                couny=county,
+                county=county,
                 zcta=zcta,
                 place=place,
                 cbsa=cbsa,
