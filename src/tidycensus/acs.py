@@ -6,6 +6,7 @@ from itertools import groupby
 from re import match
 
 import numpy as np
+import pandas as pd
 from loguru import logger
 from tryagain import retries
 
