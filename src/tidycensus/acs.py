@@ -1,6 +1,7 @@
 """Obtain data for the American Community Survey."""
 import os
 import sys
+from functools import reduce
 from itertools import groupby
 from re import match
 
