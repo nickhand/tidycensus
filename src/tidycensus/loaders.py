@@ -515,7 +515,10 @@ def load_data_acs(
 
     # We have cbsa
     if len(cbsa):
+
+        cbsa = ",".join(cbsa)
         for_area = f"{geography}:{cbsa}"
+
         vars_to_get = formatted_variables + ",NAME"
         call = get(base, params={"get": vars_to_get, "for": for_area, "key": key})
 
