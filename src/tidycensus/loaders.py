@@ -545,7 +545,7 @@ def load_data_acs(
 
             if geography == "place":
                 for_area = f"place:{place}"
-                in_area = f"place:{place}"
+                in_area = f"state:{state}"
             else:
                 in_area = f"state:{state}+place:{place}"
         else:
