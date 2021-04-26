@@ -496,7 +496,9 @@ def load_data_acs(
 ):
 
     # Check inputs
-    state, county, zcta, geoid = map(verify_list_inputs, [state, county, zcta, geoid])
+    state, county, zcta, place, cbsa = map(
+        verify_list_inputs, [state, county, zcta, place, cbsa]
+    )
 
     # Base URL
     base = f"https://api.census.gov/data/{year}/acs/{survey}"
