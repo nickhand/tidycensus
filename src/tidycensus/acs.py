@@ -273,7 +273,6 @@ def get_acs(
 
         # Get the data
         dat = map(
-            l,
             lambda x: load_data_acs(
                 geography,
                 format_variables_acs(x),
@@ -287,6 +286,7 @@ def get_acs(
                 cbsa=cbsa,
                 show_call=show_call,
             ),
+            l,
         )
 
         result = reduce(
