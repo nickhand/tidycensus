@@ -503,11 +503,11 @@ def load_data_acs(
     # Base URL
     base = f"https://api.census.gov/data/{year}/acs/{survey}"
 
-    if any([match("^DP", var) for var in formatted_variables]):
+    if any([match("^DP", var) for var in formatted_variables.split(",")]):
         logger.info("Using the ACS Data Profile")
         base += "/profile"
 
-    if any([match("^S\d.", var) for var in formatted_variables]):
+    if any([match("^S\d.", var) for var in formatted_variables.split(",")]):
         logger.info("Using the ACS Subject Tables")
         base += "/subject"
 
