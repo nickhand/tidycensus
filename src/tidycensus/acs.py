@@ -35,6 +35,7 @@ def get_acs(
     survey="acs5",
     show_call=False,
     verbose=False,
+    errors="coerce",
 ):
     """"""
     # Set the logging level to warnings or higher
@@ -177,6 +178,7 @@ def get_acs(
                         moe_level=moe_level,
                         survey=survey,
                         show_call=show_call,
+                        errors=errors,
                     ),
                 )
             )
@@ -208,6 +210,7 @@ def get_acs(
                     moe_level=moe_level,
                     survey=survey,
                     show_call=show_call,
+                    errors=errors,
                 ),
             )
         )
@@ -235,6 +238,7 @@ def get_acs(
                     moe_level=moe_level,
                     survey=survey,
                     show_call=show_call,
+                    errors=errors,
                 ),
             )
         )
@@ -287,6 +291,7 @@ def get_acs(
                 place=place,
                 cbsa=cbsa,
                 show_call=show_call,
+                errors=errors,
             ),
             l,
         )
@@ -311,6 +316,7 @@ def get_acs(
             place=place,
             cbsa=cbsa,
             show_call=show_call,
+            errors=errors,
         )
 
     vars2 = format_variables_acs(variables)

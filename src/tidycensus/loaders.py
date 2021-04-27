@@ -493,6 +493,7 @@ def load_data_acs(
     place=None,
     cbsa=None,
     show_call=False,
+    errors="coerce",
 ):
 
     # Check inputs
@@ -624,7 +625,8 @@ def load_data_acs(
 
     # Set a numeric
     var_vector = formatted_variables.split(",")
-    dat[var_vector] = dat[var_vector].astype(float)
+    for col in var_vector:
+        dat[col] = pd.to_numeric(dat[col], errors=errors)
 
     # Get the geography ID variables
     v2 = var_vector + ["NAME"]
