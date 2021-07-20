@@ -5,7 +5,7 @@ description = ""
 authors = ["Nick Hand <nicholas.adam.hand@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7.1"
 cenpy = "^1.0.0"
 loguru = "^0.5.3"
 black = "^20.8b1"
